@@ -1,0 +1,18 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: api-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka
+zuul:
+  routes:
+    cloud-user: #自己随意起的名字
+      path: /user/** #请求路径中包含user，会把请求转发到cloud-user微服务中
+      serviceId: cloud-user #eureka中注册的微服务名称
+    cloud-order: #自己随意起的名字
+      path: /order/** #请求路径中包含order，会把请求转发到cloud-order微服务中
+      serviceId: cloud-order #eureka中注册的微服务名称
+
